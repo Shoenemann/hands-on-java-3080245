@@ -1,5 +1,7 @@
 package bank;
 
+import bank.exceptions.AmountException;
+
 public class Account {
   private int id;
   private String type;
@@ -10,7 +12,6 @@ public class Account {
     this.type = type;
     this.balance = balance;
   }
-
 
   public int getId() {
     return this.id;
@@ -34,6 +35,26 @@ public class Account {
 
   public void setBalance(double balance) {
     this.balance = balance;
+  }
+
+  public void deposit(double amount) throws AmountException {
+    if (amount < 0) {
+      throw new AmountException("The minimum deposit is 0");
+    } else {
+      double newBalance = balance + amount;
+      setBalance(newBalance);
+    }
+  }
+
+  public void withdraw(double amount) throws AmountException {
+    if(amount > balance) {
+      throw new AmountException(message:"You cannot withdraw more than you have");
+    }
+    else {
+      double newBalance = balance - amount;
+      setBalance(newBalance);
+    }
+
   }
 
 }
