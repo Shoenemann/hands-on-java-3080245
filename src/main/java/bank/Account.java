@@ -47,6 +47,9 @@ public class Account {
   }
 
   public void withdraw(double amount) throws AmountException {
+    if (amount < 0) {
+      throw new AmountException("The minimum withdrawal is 0");
+    }
     if (amount > balance) {
       throw new AmountException("You cannot withdraw more than you have");
     } else {
