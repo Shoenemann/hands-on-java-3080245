@@ -47,10 +47,9 @@ public class Account {
   }
 
   public void withdraw(double amount) throws AmountException {
-    if(amount > balance) {
-      throw new AmountException(message:"You cannot withdraw more than you have");
-    }
-    else {
+    if (amount > balance) {
+      throw new AmountException("You cannot withdraw more than you have");
+    } else {
       double newBalance = balance - amount;
       setBalance(newBalance);
     }
